@@ -1,9 +1,9 @@
 const express = require('express');
 const http = require('http');
-const io = require('socket.io')(server);
 
 const app = express();
 const server = http.Server(app);
+const io = require('socket.io')(server);
 
 const port = 3333;
 
@@ -14,3 +14,11 @@ server.listen(port, function() {
 app.get("/", function(req, res) {
     res.sendFile(__dirname + "/index.html")
 });
+
+io.on('connection', function(socket) {
+    console.log('A user has connected.');
+
+    socket.on('disconnect', function() {
+        console.log('A user has disconnected.')
+    });
+})
