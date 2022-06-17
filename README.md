@@ -1,2 +1,2 @@
 # js-chat-system
-Basic chat system with pure Javascript
+Basic chat application using NodeJs, ExpressJS, Socket.oi and JQuery.

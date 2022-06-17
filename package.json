@@ -1,0 +1,23 @@
+{
+  "name": "chat-application",
+  "version": "1.0.0",
+  "description": "Simple chat applicaton using Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anic4cio/chat-system.git"
+  },
+  "author": "anicaciovinicius36@gmail.com @anic4cio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anic4cio/chat-system/issues"
+  },
+  "homepage": "https://github.com/anic4cio/chat-system#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "socket.io": "^4.5.1"
+  }
+}
