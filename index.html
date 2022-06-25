@@ -32,36 +32,75 @@
             </div>
 
             <div id="onlineUsers">
-                <ul id="users">
-                    <li>Anic4cio</li>
-                    <li>CrazyJosh</li>
-                    <li>Bandicoot</li>
-                    <li>Aladin</li>
-                    <li>Lodash</li>
-                    <li>Zonda</li>
-                    <li>Sorius</li>
-                    <li>Naomi</li>
-                    <li>Strozer</li>
-                </ul>
+                <ul id="users"></ul>
             </div>
         </div>
 
-        <div id="messageArea"></div>
+        <div id="messageArea">
+            <div id="displayMessageArea">
+                <ul id="messages"></ul>
+            </div>
+
+            <div id="messageFormArea">
+                <form id="messageForm">
+                    <input id="message" type="text" placeholder="Type a message" autocomplete="off">
+                    <input id="messageSubmit" type="submit" value="SEND">
+                </form>
+            </div>
+        </div>
+    
     </div>
 </body>
 
 <script type="text/javascript">
-
     var socket = io();
     
+    function updateUsers(list) {
+        for(let i = 0; i < list.length; i++) {
+            $("#users").append("<li><b>" + list[i] + "</b></li>");
+        }
+    }
+
     $("#loginForm").submit(function(event) {
         event.preventDefault();
         if($("#username").val() == "" || $("username").val() == " ") {
             alert("Invalid username");
         } else {
+            $username = $("#username").val();
+
             $("#loginArea").hide();
             $("#chatArea").show();
+            $("#messages").html("");
+
+            socket.emit("has connected", $username);
         }
     });
+
+    $("#messageForm").submit(function(event) {
+        event.preventDefault();
+
+        if($("#message").val() == "" || $("#message").val() == " ") {
+            alert(`Can't send empty messages!`)
+        } else {
+            socket.emit("new message", {username: $username, message: $("#message").val()});
+            $("#message").val("");
+        }
+    });
+
+    socket.on("has connected", function(data) {
+        $("#users").html("");
+        updateUsers(data.usersList);
+        $("#messages").append("<li><i><b>" + data.username+ "</b> has connected</i></li>")
+    });
+
+    socket.on("has disconnected", function(data) {
+        $("#users").html("");
+        updateUsers(data.usersList);
+        $("#messages").append("<li><i><b>" + data.username+ "</b> has disconnected</i></li>")
+    });
+
+    socket.on("new message", function(data) {
+        $("#messages").append("<li><b>" + data.username + "</b>: " + data.message + "</li>")
+    })
 </script>
 </html>
