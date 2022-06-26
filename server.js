@@ -19,8 +19,8 @@ app.get("/", function(req, res) {
     res.sendFile(`${__dirname}/index.html`)
 });
 
-app.get("/css/style.css", function(req, res) {
-    res.sendFile(`${__dirname}/css/style.css`)
+app.get("/styles/style.css", function(req, res) {
+    res.sendFile(`${__dirname}/styles/style.css`)
 });
 
 io.on('connection', function(socket) {
