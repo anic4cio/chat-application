@@ -2,8 +2,14 @@
 Basic chat application using NodeJs, ExpressJS, Socket.oi and JQuery.
 
 ## Screenshots
-Initial page, enter your nickname only
-<img src="screenshots/login-page.png" alt="login page">
+### Initial page
+* enter your nickname only
+* start to chat
+<br>
+<img src="screenshots/login-page.png" alt="login page" width="800">
 
-Chat area, with online users and show users when they connected and disconnected
-<img src="screenshots/chat.png" alt="chat area">
+### Chat area
+* with online users 
+* show users when they connected and disconnected
+<br>
+<img src="screenshots/chat.png" alt="chat area" width="800">
